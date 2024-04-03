@@ -1,0 +1,23 @@
+server:
+  port: ${SERVER_PORT:8081}
+  servlet:
+    application-display-name: Hotel Management
+    context-path: "/v1/"
+
+spring:
+  application:
+    name: Hotel Management
+  main:
+    allow-bean-definition-overriding: true
+    allow-circular-references: true
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+  datasource:
+    url: ${DATABASE_SERVER:jdbc:postgresql://localhost:5432/postgres?currentSchema=hotel-management}
+    username: ${DATABASE_USERNAME:postgres}
+    password: ${DATABASE_PASSWORD:123456}
+springdoc:
+  packages-to-scan: com.hotel.management
+  default-produces-media-type: application/json
