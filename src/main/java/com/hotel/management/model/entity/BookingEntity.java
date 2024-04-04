@@ -59,6 +59,9 @@ public class BookingEntity extends BaseEntity<String> {
     @Column(name = "status")
     private Status status;
 
+    @Column(name = "is_cancel")
+    private boolean isCancel;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "room_id", nullable = false)
     private RoomEntity roomEntity;

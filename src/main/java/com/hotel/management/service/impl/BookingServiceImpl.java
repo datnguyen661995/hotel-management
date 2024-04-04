@@ -11,8 +11,12 @@ import com.hotel.management.repository.RoomRepository;
 import com.hotel.management.service.BookingService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -39,27 +43,48 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public Long create(BookingRequestDto bookingRequestDto) {
-        return null;
+        var bookingEntity = bookingMapper.toEntity(bookingRequestDto);
+        var result = bookingRepository.save(bookingEntity);
+        return result.getId();
     }
 
     @Override
-    public void update(Long id, BookingRequestDto bookingRequestDto) {
-
+    public Long update(Long id, BookingRequestDto request) {
+        var bookingEntity = bookingRepository.findById(id);
+        if (bookingEntity.isPresent()) {
+            var entity = bookingEntity.get();
+            if (Objects.nonNull(request.getRoomResponseDto())) {
+                entity.getRoomEntity().setType(request.getRoomResponseDto().getType());
+                entity.getRoomEntity().setCapacity(request.getRoomResponseDto().getCapacity());
+                entity.getRoomEntity().setPricePerNight(request.getRoomResponseDto().getPricePerNight());
+            }
+            if (Objects.nonNull(request.getCustomerRequestDto())) {
+                entity.getCustomerEntity().setName(request.getName());
+                entity.getCustomerEntity().setEmail(request.getEmail());
+                entity.getCustomerEntity().setPhone(request.getPhone());
+            }
+            bookingRepository.save(entity);
+        }
+        return id;
     }
 
     @Override
     public void cancel(Long id) {
-
+        var bookingEntity = bookingRepository.findById(id);
+        if (bookingEntity.isPresent()) {
+            var entity = bookingEntity.get();
+            entity.setCancel(Boolean.TRUE);
+            bookingRepository.save(entity);
+        }
     }
 
     @Override
     public Page<BookingInformationResponseDto> search(BookingRequestDto bookingRequestDto, Pageable pageable) {
-
-//        var entities = bookingRepository.findAllByCustomerEntity_NameOrCustomerEntity_EmailOrCustomerEntity_PhoneOrCustomerEntity(bookingRequestDto.getName(), bookingRequestDto.getEmail(),bookingRequestDto.getPhone(), pageable);
-//        var result = entities.stream().map(ob -> {
-//            return new BookingInformationResponseDto(ob.getCustomerEntity().getName(), ob.getCustomerEntity().getEmail(), ob.getCustomerEntity().getPhone());
-//        }).collect(Collectors.toList());
-//        return new PageImpl<>(result, pageable, entities.getTotalElements());
-        return null;
+        var entities = bookingRepository.findAllByCustomerEntity_NameOrCustomerEntity_EmailOrCustomerEntity_PhoneOrCustomerEntity(bookingRequestDto.getName(), bookingRequestDto.getEmail(),bookingRequestDto.getPhone(), pageable);
+        var result = entities.stream().map(ob -> {
+            var booking =  new BookingInformationResponseDto( ob.getRoomEntity().getHotelEntity().getName(),ob.getCustomerEntity().getName(), ob.getCustomerEntity().getEmail(), ob.getCustomerEntity().getPhone(), ob.getRoomEntity().getType());
+            return booking;
+        }).collect(Collectors.toList());
+        return new PageImpl<>(result, pageable, entities.getTotalElements());
     }
 }

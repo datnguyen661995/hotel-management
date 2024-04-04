@@ -1,18 +1,19 @@
-package com.hotel.management.model.dto.response;
+package com.hotel.management.model.dto.request;
 
+import com.hotel.management.model.enums.Availability;
 import com.hotel.management.model.enums.RoomType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BookingInformationResponseDto {
-    private String hotelName;
+public class RoomRequestDto {
     private String name;
-    private String email;
-    private String phone;
     private RoomType roomType;
-
+    private BigDecimal pricePerNight;
+    private Availability availability;
 }

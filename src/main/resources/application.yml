@@ -18,6 +18,13 @@ spring:
     url: ${DATABASE_SERVER:jdbc:postgresql://localhost:5432/postgres?currentSchema=hotel-management}
     username: ${DATABASE_USERNAME:postgres}
     password: ${DATABASE_PASSWORD:123456}
+  flyway:
+    enabled: true
+    out-of-order: true
+    baseline-on-migrate: true
+    table: schema_history_management_service
+    locations: classpath:db/migration/${FLYWAY_ENV:dev}
 springdoc:
   packages-to-scan: com.hotel.management
   default-produces-media-type: application/json
+

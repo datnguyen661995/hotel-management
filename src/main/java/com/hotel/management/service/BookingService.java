@@ -9,7 +9,7 @@ import org.springframework.data.domain.Pageable;
 public interface BookingService {
     BookingResponseDto getBooking(Long id);
     Long create(BookingRequestDto bookingRequestDto);
-    void update(Long id, BookingRequestDto bookingRequestDto);
+    Long update(Long id, BookingRequestDto bookingRequestDto);
     void cancel(Long id);
     Page<BookingInformationResponseDto> search(BookingRequestDto bookingRequestDto, Pageable pageable);
 }

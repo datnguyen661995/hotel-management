@@ -17,4 +17,6 @@ public class BookingResponseDto {
     private Date checkOutDate;
     private BigDecimal totalAmount;
     private Status status;
+    private RoomResponseDto roomResponseDto;
+    private CustomerResponseDto customerResponseDto;
 }

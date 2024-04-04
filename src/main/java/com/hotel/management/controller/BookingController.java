@@ -53,12 +53,14 @@ public class BookingController {
     public ResponseEntity<BaseResponseDto<?>> create(
             @NotNull @RequestBody BookingRequestDto requestDto
     ) {
-        return ResponseEntity.ok(new BaseResponseDto<>(null));
+        var result = this.bookingService.create(requestDto);
+        return ResponseEntity.ok(new BaseResponseDto<>(result));
     }
 
     @PutMapping(value = "/{id}",produces = {MediaType.APPLICATION_JSON_VALUE})
-    public void update(@RequestBody BookingRequestDto bookingRequestDto, @PathVariable("id")Long id) {
-        this.bookingService.update(id, bookingRequestDto);
+    public ResponseEntity<BaseResponseDto<?>> update(@RequestBody BookingRequestDto bookingRequestDto, @PathVariable("id")Long id) {
+        var result = this.bookingService.update(id, bookingRequestDto);
+        return ResponseEntity.ok(new BaseResponseDto<>(result));
     }
 
     @DeleteMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})

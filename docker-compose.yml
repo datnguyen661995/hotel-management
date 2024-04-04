@@ -1,0 +1,16 @@
+version: "3.7"
+
+services:
+  management-service-db:
+    image: 'bitnami/postgresql:latest'
+    container_name: pa-service-db
+    ports:
+      - '5432:5432'
+    volumes:
+      - db-data:/bitnami/postgresql
+    environment:
+      - POSTGRESQL_DATABASE=management-service
+      - POSTGRESQL_USERNAME=postgres
+      - POSTGRESQL_PASSWORD=123456
+    networks:
+      - local
