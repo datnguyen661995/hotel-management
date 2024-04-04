@@ -10,6 +10,6 @@ RUN mvn package
 
 FROM openjdk:17.0.2-jdk
 
-COPY --from=builder /app/target/pa-service.jar /opt/app.jar
+COPY --from=builder /app/target/hm-service.jar /opt/app.jar
 
 ENTRYPOINT ["java","-jar","opt/app.jar"]

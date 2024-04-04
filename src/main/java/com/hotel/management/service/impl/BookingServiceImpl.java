@@ -69,11 +69,11 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public void cancel(Long id) {
+    public void cancel(Long id, Boolean isCancel) {
         var bookingEntity = bookingRepository.findById(id);
         if (bookingEntity.isPresent()) {
             var entity = bookingEntity.get();
-            entity.setCancel(Boolean.TRUE);
+            entity.setCancel(isCancel);
             bookingRepository.save(entity);
         }
     }

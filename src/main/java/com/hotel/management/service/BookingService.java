@@ -10,6 +10,6 @@ public interface BookingService {
     BookingResponseDto getBooking(Long id);
     Long create(BookingRequestDto bookingRequestDto);
     Long update(Long id, BookingRequestDto bookingRequestDto);
-    void cancel(Long id);
+    void cancel(Long id, Boolean isCancel);
     Page<BookingInformationResponseDto> search(BookingRequestDto bookingRequestDto, Pageable pageable);
 }
