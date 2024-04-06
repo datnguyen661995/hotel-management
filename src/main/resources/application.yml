@@ -23,8 +23,14 @@ spring:
     out-of-order: true
     baseline-on-migrate: true
     table: schema_history_management_service
-    locations: classpath:db/migration/${FLYWAY_ENV:dev}
+    locations: classpath:db/migration
+#    locations: classpath:db/migration/${FLYWAY_ENV:dev}
 springdoc:
   packages-to-scan: com.hotel.management
   default-produces-media-type: application/json
-
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui-custom.html
+  service:
+    ignoringMatchers: ${IGNORE_MATCHERS:/swagger-ui**,/swagger-ui/**, /swagger-resources/**, /actuator/health, /v3/api-docs/**, /v1/v3/api-docs/ , /v1/files , /files/view, /files/view/**}

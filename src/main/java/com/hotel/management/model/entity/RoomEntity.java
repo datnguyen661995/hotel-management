@@ -52,6 +52,9 @@ public class RoomEntity extends BaseEntity<String> {
     @Column(name = "availability")
     private Availability availability;
 
+    @Column(name = "is_delete")
+    private Boolean isDelete;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "hotel_id", nullable = false)
     private HotelEntity hotelEntity;

@@ -32,10 +32,10 @@ dependencies {
 	implementation 'org.mapstruct:mapstruct:1.4.2.Final'
 	annotationProcessor "org.mapstruct:mapstruct-processor:1.4.2.Final"
 	compileOnly 'org.mapstruct:mapstruct-processor:1.4.2.Final'
-	implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.6.9'
-	implementation 'org.springdoc:springdoc-openapi-ui:1.6.9'
+//	implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.6.9'
+	implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webflux-ui', version: '2.3.0'
+	implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.2.0'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	// https://mvnrepository.com/artifact/org.flywaydb/flyway-core
 	implementation group: 'org.flywaydb', name: 'flyway-core', version: '9.18.0'
 }
 

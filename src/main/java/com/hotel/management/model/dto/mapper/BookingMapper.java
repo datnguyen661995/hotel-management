@@ -19,5 +19,7 @@ public interface BookingMapper {
     BookingResponseDto toDto(BookingEntity bookingEntity);
 
 
+    @Mapping(source = "bookingRequestDto.roomRequestDto", target = "roomEntity")
+    @Mapping(source = "bookingRequestDto.customerRequestDto", target = "customerEntity")
     BookingEntity toEntity(BookingRequestDto bookingRequestDto);
 }

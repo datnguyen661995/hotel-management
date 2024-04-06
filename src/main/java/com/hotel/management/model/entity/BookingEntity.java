@@ -1,10 +1,7 @@
 package com.hotel.management.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.hotel.management.model.enums.Availability;
-import com.hotel.management.model.enums.RoomType;
 import com.hotel.management.model.enums.Status;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -15,7 +12,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -26,9 +22,7 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Getter
 @Setter

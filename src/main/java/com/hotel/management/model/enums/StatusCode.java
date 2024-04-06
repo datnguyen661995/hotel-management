@@ -3,13 +3,13 @@ package com.hotel.management.model.enums;
 import lombok.Getter;
 
 @Getter
-public enum ResponseStatus {
+public enum StatusCode {
     SUCCESS("success"),
     ERROR("error");
 
     private final String value;
 
-    ResponseStatus(String value) {
+    StatusCode(String value) {
         this.value = value;
     }
 }

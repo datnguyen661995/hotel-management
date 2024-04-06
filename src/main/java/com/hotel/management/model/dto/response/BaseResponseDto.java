@@ -1,18 +1,29 @@
 package com.hotel.management.model.dto.response;
 
-import com.hotel.management.model.enums.ResponseStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
+import com.hotel.management.model.enums.StatusCode;
 
 @AllArgsConstructor
 @Data
 public class BaseResponseDto<T> {
     private T data;
-    private ResponseStatus status;
+    private StatusCode status;
+    private Boolean isStatus;
 
     public BaseResponseDto(T data) {
         this.data = data;
-        this.status = ResponseStatus.SUCCESS;
+        this.status = StatusCode.SUCCESS;
+    }
+
+    public BaseResponseDto(T data ,StatusCode status) {
+        this.data = data;
+        this.status = status;
+    }
+
+    public BaseResponseDto(Boolean isStatus) {
+        this.data = null;
+        this.isStatus = isStatus;
+        this.status =  StatusCode.SUCCESS;
     }
 }

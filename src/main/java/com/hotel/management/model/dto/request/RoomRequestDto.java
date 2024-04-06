@@ -12,8 +12,10 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RoomRequestDto {
-    private String name;
+    private Long id;
     private RoomType roomType;
+    private RoomType type;
+    private Integer capacity;
     private BigDecimal pricePerNight;
     private Availability availability;
 }

@@ -8,6 +8,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BookingRepository extends JpaRepository<BookingEntity, Long> {
-    Page<BookingEntity> findAllByCustomerEntity_NameOrCustomerEntity_EmailOrCustomerEntity_PhoneOrCustomerEntity(String name, String email, String phone, Pageable pageable);
-
+    Page<BookingEntity> findByCustomerEntityIdOrCustomerEntityEmailOrCustomerEntityPhone(String name, String email, String phone, Pageable pageable);
 }

@@ -49,7 +49,7 @@ public class BookingController {
     }
 
     @PostMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<BaseResponseDto<?>> create(
+    public ResponseEntity<BaseResponseDto<Long>> create(
             @NotNull @RequestBody BookingRequestDto requestDto
     ) {
         var result = this.bookingService.create(requestDto);
@@ -57,14 +57,13 @@ public class BookingController {
     }
 
     @PutMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<BaseResponseDto<?>> update(@RequestBody BookingRequestDto bookingRequestDto, @PathVariable("id") Long id) {
+    public ResponseEntity<BaseResponseDto<Long>> update(@RequestBody BookingRequestDto bookingRequestDto, @PathVariable("id") Long id) {
         var result = this.bookingService.update(id, bookingRequestDto);
         return ResponseEntity.ok(new BaseResponseDto<>(result));
     }
 
-    @PostMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PostMapping(value = "/cancel/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public void delete(@PathVariable("id") Long id, @RequestParam(name = "isCancel")@NotNull Boolean isCancel) {
         this.bookingService.cancel(id, isCancel);
     }
-
 }
