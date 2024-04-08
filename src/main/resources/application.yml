@@ -15,7 +15,7 @@ spring:
       ddl-auto: none
     show-sql: true
   datasource:
-    url: ${DATABASE_SERVER:jdbc:postgresql://localhost:5432/postgres?currentSchema=hotel-management}
+    url: ${DATABASE_SERVER:jdbc:postgresql://localhost:2345/hm-service-db}
     username: ${DATABASE_USERNAME:postgres}
     password: ${DATABASE_PASSWORD:123456}
   flyway:

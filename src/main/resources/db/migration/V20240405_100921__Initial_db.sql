@@ -1,4 +1,4 @@
-CREATE TABLE "hotel-management".customer (
+CREATE TABLE "hotel-management-service".customer (
                                              created_at timestamp(6) NULL,
                                              id bigserial NOT NULL,
                                              updated_at timestamp(6) NULL,
@@ -9,7 +9,7 @@ CREATE TABLE "hotel-management".customer (
                                              updated_by varchar(255) NULL,
                                              CONSTRAINT customer_pkey PRIMARY KEY (id)
 );
-CREATE TABLE "hotel-management".hotel (
+CREATE TABLE "hotel-management-service".hotel (
                                           rating int4 NOT NULL,
                                           created_at timestamp(6) NULL,
                                           id bigserial NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE "hotel-management".hotel (
                                           updated_by varchar(255) NULL,
                                           CONSTRAINT hotel_pkey PRIMARY KEY (id)
 );
-CREATE TABLE "hotel-management".room (
+CREATE TABLE "hotel-management-service".room (
                                          capacity int4 NULL,
                                          price numeric(38, 2) NULL,
                                          created_at timestamp(6) NULL,
@@ -39,7 +39,7 @@ CREATE TABLE "hotel-management".room (
 	CONSTRAINT room_type_check CHECK (((type)::text = ANY ((ARRAY['SINGLE'::character varying, 'DOUBLE'::character varying, 'TRIPLE'::character varying, 'QUAD'::character varying, 'QUEEN'::character varying, 'KING'::character varying])::text[])))
 );
 
-CREATE TABLE "hotel-management".booking (
+CREATE TABLE "hotel-management-service".booking (
                                             check_in_date date NULL,
                                             check_out_date date NULL,
                                             is_cancel bool NULL,
@@ -56,11 +56,11 @@ CREATE TABLE "hotel-management".booking (
                                             CONSTRAINT booking_status_check CHECK (((status)::text = ANY ((ARRAY['CONFIRMED'::character varying, 'CANCELLED'::character varying, 'PENDING'::character varying])::text[])))
 );
 
-ALTER TABLE "hotel-management".booking
-    ADD FOREIGN KEY (customer_id) REFERENCES "hotel-management".customer(id);
+ALTER TABLE "hotel-management-service".booking
+    ADD FOREIGN KEY (customer_id) REFERENCES "hotel-management-service".customer(id);
 
-ALTER TABLE "hotel-management".booking
-    ADD FOREIGN KEY (room_id) REFERENCES "hotel-management".room(id);
+ALTER TABLE "hotel-management-service".booking
+    ADD FOREIGN KEY (room_id) REFERENCES "hotel-management-service".room(id);
 
-ALTER TABLE "hotel-management".room
-    ADD FOREIGN KEY (hotel_id) REFERENCES "hotel-management".hotel(id);
+ALTER TABLE "hotel-management-service".room
+    ADD FOREIGN KEY (hotel_id) REFERENCES "hotel-management-service".hotel(id);

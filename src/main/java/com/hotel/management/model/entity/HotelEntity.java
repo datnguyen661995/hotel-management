@@ -25,7 +25,7 @@ import java.util.List;
 @NoArgsConstructor
 @SuperBuilder
 @Entity
-@Table(name = "hotel")
+@Table(name = "hotel", schema = "hotel-management-service")
 public class HotelEntity extends BaseEntity<String> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

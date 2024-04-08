@@ -1,16 +1,33 @@
 version: '3.8'
+
 services:
-  postgres_db:
-    image: postgres:latest
-    container_name: PostgresCont
+  hm-db:
+    container_name: hm-db
+    image: 'bitnami/postgresql:latest'
+    ports:
+      - '2345:5432'
+    environment:
+      POSTGRESQL_DATABASE: hm-service-db
+      POSTGRESQL_USERNAME: postgres
+      POSTGRESQL_PASSWORD: 123456
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    networks:
+      - hm-network
+  hm-service:
+    container_name: hm-service
+    image: hm-service:${TAG:-latest}
+    build: ./
+    ports:
+      - '8080:8080'
+    depends_on:
+      - hm-db
     restart: always
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres123
-    ports:
-      - '5432:5432'
-    volumes:
-      - postgres_db:/var/lib/postgresql/data
-volumes:
-  postgres_db:
-    driver: local
+      DATABASE_SERVER: jdbc:postgresql://172.16.2.53:2345/hm-service-db
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: 123456
+    networks:
+      - hm-network
+networks:
+  hm-network:

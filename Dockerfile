@@ -1,15 +1,9 @@
-FROM maven:3.8.1-openjdk-17-slim AS builder
+FROM gradle:4.7.0-jdk8-alpine AS build
+COPY --chown=gradle:gradle . /home/gradle/src
+WORKDIR /home/gradle/src
+RUN gradle build --no-daemon
 
-WORKDIR /app
-
-COPY ./pom.xml .
-RUN mvn verify --fail-never
-
-COPY . .
-RUN mvn package
-
-FROM openjdk:17.0.2-jdk
-
-COPY --from=builder /app/target/hm-service.jar /opt/app.jar
-
-ENTRYPOINT ["java","-jar","opt/app.jar"]
+FROM openjdk:17
+ARG JAR_FILE=build/libs/*.jar
+COPY ${JAR_FILE} hm-service.jar
+ENTRYPOINT ["java","-jar","/hm-service.jar"]

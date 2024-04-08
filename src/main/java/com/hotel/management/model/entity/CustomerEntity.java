@@ -24,7 +24,7 @@ import java.util.List;
 @NoArgsConstructor
 @SuperBuilder
 @Entity
-@Table(name = "customer")
+@Table(name = "customer", schema = "hotel-management-service")
 public class CustomerEntity extends BaseEntity<String> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

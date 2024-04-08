@@ -30,7 +30,7 @@ import java.util.Date;
 @NoArgsConstructor
 @SuperBuilder
 @Entity
-@Table(name = "booking")
+@Table(name = "booking", schema = "hotel-management-service")
 public class BookingEntity extends BaseEntity<String> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -31,7 +31,7 @@ import java.util.List;
 @NoArgsConstructor
 @SuperBuilder
 @Entity
-@Table(name = "room")
+@Table(name = "room",schema = "hotel-management-service")
 public class RoomEntity extends BaseEntity<String> {
 
     @Id
