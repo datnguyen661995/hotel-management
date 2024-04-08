@@ -75,7 +75,7 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public Page<BookingInformationResponseDto> search(BookingRequestDto bookingRequestDto, Pageable pageable) {
-        var entities = bookingRepository.findByCustomerEntityIdOrCustomerEntityEmailOrCustomerEntityPhone(bookingRequestDto.getName(), bookingRequestDto.getEmail(), bookingRequestDto.getPhone(), pageable);
+        var entities = bookingRepository.findByCustomerEntityIdOrCustomerEntityEmailOrCustomerEntityPhone(bookingRequestDto.getCustomerRequestDto().getName(), bookingRequestDto.getCustomerRequestDto().getEmail(), bookingRequestDto.getCustomerRequestDto().getPhone(), pageable);
         var result = entities.stream()
                 .map(ob ->
                         new BookingInformationResponseDto(ob.getRoomEntity().getHotelEntity().getName(), ob.getCustomerEntity().getName(), ob.getCustomerEntity().getEmail(), ob.getCustomerEntity().getPhone(), ob.getRoomEntity().getType())

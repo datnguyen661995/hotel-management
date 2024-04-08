@@ -24,6 +24,7 @@ spring:
     baseline-on-migrate: true
     table: schema_history_management_service
     locations: classpath:db/migration
+    schemas: hotel-management-service
 #    locations: classpath:db/migration/${FLYWAY_ENV:dev}
 springdoc:
   packages-to-scan: com.hotel.management
