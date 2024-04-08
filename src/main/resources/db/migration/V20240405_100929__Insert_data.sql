@@ -12,8 +12,8 @@ INSERT INTO "hotel-management-service".room (capacity,price,created_at,hotel_id,
 (4,300.00,NULL,1,5,NULL,'AVAILABLE',NULL,'TRIPLE',false,NULL),
 (4,350.00,NULL,1,6,NULL,'AVAILABLE',NULL,'TRIPLE',false,NULL);
 
-
-INSERT INTO "hotel-management-service".customer (created_at,id,updated_at,created_by,email,"name",phone,updated_by) VALUES
-(NULL,1,NULL,NULL,'test1@gmail.com','test1','0903843341',NULL),
-(NULL,2,NULL,NULL,'test2@gmail.com','test2','0903843342',NULL),
-(NULL,3,NULL,NULL,'test3@gmail.com','test3','0903843343',NULL);
+--
+-- INSERT INTO "hotel-management-service".customer (created_at,id,updated_at,created_by,email,"name",phone,updated_by) VALUES
+-- (NULL,1,NULL,NULL,'test1@gmail.com','test1','0903843341',NULL),
+-- (NULL,2,NULL,NULL,'test2@gmail.com','test2','0903843342',NULL),
+-- (NULL,3,NULL,NULL,'test3@gmail.com','test3','0903843343',NULL);

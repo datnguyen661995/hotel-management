@@ -1,6 +1,7 @@
 package com.hotel.management.model.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.hotel.management.model.enums.Status;
 import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
@@ -21,6 +22,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class BookingRequestDto {
     private Long id;
 

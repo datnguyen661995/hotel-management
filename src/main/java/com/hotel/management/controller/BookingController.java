@@ -1,6 +1,7 @@
 package com.hotel.management.controller;
 
 import com.hotel.management.model.dto.request.BookingRequestDto;
+import com.hotel.management.model.dto.request.SearchRequestDto;
 import com.hotel.management.model.dto.response.BaseResponseDto;
 import com.hotel.management.model.dto.response.BookingInformationResponseDto;
 import com.hotel.management.model.dto.response.BookingResponseDto;
@@ -37,12 +38,13 @@ public class BookingController {
     }
 
     @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<BaseResponseDto<Page<BookingInformationResponseDto>>> getAllBookings(
-            @RequestParam(name = "search", defaultValue = "") BookingRequestDto search,
+    public ResponseEntity<BaseResponseDto<Page<BookingInformationResponseDto>>> search(
+            @RequestParam(name = "search", defaultValue = "") String search,
             @RequestParam(name = "pageNumber", defaultValue = "0") int pageNumber,
             @RequestParam(name = "pageSize", defaultValue = "10") int pageSize,
-            @RequestParam(name = "sortBy", defaultValue = "saDeadline") String sortBy,
-            @RequestParam(name = "sortOrder", defaultValue = "DESC") Sort.Direction sortOrder) {
+            @RequestParam(name = "sortBy", defaultValue = "name") String sortBy,
+            @RequestParam(name = "sortOrder", defaultValue = "DESC") Sort.Direction sortOrder
+            ) {
         var pageRequest = PageRequest.of(pageNumber, pageSize, Sort.by(sortOrder, sortBy));
         var result = this.bookingService.search(search, pageRequest);
         return ResponseEntity.ok(new BaseResponseDto<>(result));
@@ -63,7 +65,7 @@ public class BookingController {
     }
 
     @PostMapping(value = "/cancel/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public void delete(@PathVariable("id") Long id, @RequestParam(name = "isCancel")@NotNull Boolean isCancel) {
-        this.bookingService.cancel(id, isCancel);
+    public  ResponseEntity<BaseResponseDto<Boolean>> delete(@PathVariable("id") Long id, @RequestParam(name = "isCancel")@NotNull Boolean isCancel) {
+        return ResponseEntity.ok(new BaseResponseDto<>(this.bookingService.cancel(id, isCancel)));
     }
 }

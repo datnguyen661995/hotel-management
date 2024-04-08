@@ -20,6 +20,5 @@ public interface BookingMapper {
 
 
     @Mapping(source = "bookingRequestDto.roomRequestDto", target = "roomEntity")
-    @Mapping(source = "bookingRequestDto.customerRequestDto", target = "customerEntity")
     BookingEntity toEntity(BookingRequestDto bookingRequestDto);
 }

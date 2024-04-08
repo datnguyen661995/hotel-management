@@ -1,7 +1,6 @@
-package com.hotel.management.model.dto.response;
+package com.hotel.management.model.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.hotel.management.model.enums.RoomType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,10 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class BookingInformationResponseDto {
-    private String hotelName;
+public class SearchRequestDto {
     private String name;
     private String email;
     private String phone;
-    private RoomType roomType;
 }
