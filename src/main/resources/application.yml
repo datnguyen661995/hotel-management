@@ -1,0 +1,37 @@
+server:
+  port: ${SERVER_PORT:8081}
+  servlet:
+    application-display-name: Hotel Management
+    context-path: "/v1/"
+
+spring:
+  application:
+    name: Hotel Management
+  main:
+    allow-bean-definition-overriding: true
+    allow-circular-references: true
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+  datasource:
+    url: ${DATABASE_SERVER:jdbc:postgresql://localhost:2345/hm-service-db}
+    username: ${DATABASE_USERNAME:postgres}
+    password: ${DATABASE_PASSWORD:123456}
+  flyway:
+    enabled: true
+    out-of-order: true
+    baseline-on-migrate: true
+    table: schema_history_management_service
+    locations: classpath:db/migration
+    schemas: hotel-management-service
+#    locations: classpath:db/migration/${FLYWAY_ENV:dev}
+springdoc:
+  packages-to-scan: com.hotel.management
+  default-produces-media-type: application/json
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui-custom.html
+  service:
+    ignoringMatchers: ${IGNORE_MATCHERS:/swagger-ui**,/swagger-ui/**, /swagger-resources/**, /actuator/health, /v3/api-docs/**, /v1/v3/api-docs/ , /v1/files , /files/view, /files/view/**}
